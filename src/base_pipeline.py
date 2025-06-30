@@ -11,7 +11,7 @@ from scipy.stats import ttest_ind
 
 
 
-df = pd.read_csv("File/ActiveMQ_input.csv")
+df = pd.read_csv("File/ActiveMQ_input_clean.csv")
 column_names = df.columns.tolist()
 
 print(df.info())
@@ -31,10 +31,10 @@ for column_name in column_names:
         # Crea una copia del DataFrame senza la colonna 'commitdate'
 
 #calcolo della correlazione
-df_no_commitdate = df.drop(columns=["commitdate"])
+df_no_commitdate = df.drop(columns=["commitdate"], errors="ignore")
 print(df_no_commitdate.corr()["bug"].sort_values(ascending=False))
 # Variabile numerica da confrontare con 'bug'
-numerical_col = "sexp"
+numerical_col = "npt"
 
 # --- 1. T-TEST ---
 group0 = df_no_commitdate[df_no_commitdate["bug"] == 0][numerical_col]
