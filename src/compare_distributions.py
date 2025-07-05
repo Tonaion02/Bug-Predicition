@@ -9,13 +9,13 @@ from scipy.stats import chi2_contingency
 
 path_to_data_set_1 = "File/ActiveMQ_input_base.csv"
 path_to_data_set_2 = "File/ActiveMQ_input_oversampled.csv"
-feature_1 = "fix"
-feature_2 = "fix"
+feature_1 = "entropy"
+feature_2 = "entropy"
 # Choose modality between:
 #   - KS (Kolmogorov-Smirnov)
 #   - AD (Anderson-Darling)
 #   - CQ (Chi-Quadro)
-modality = "CQ" 
+modality = "KS" 
 
 
 

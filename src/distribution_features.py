@@ -9,7 +9,7 @@ from scipy.stats import ttest_ind
 
 
 
-version = "oversampled"
+version = "oversampled_adasyn"
 path_to_summary_file = f"File/distributions/summary_{version}.md"
 path_to_data_set = f"File/ActiveMQ_input_{version}.csv"
 drop_columns = False
