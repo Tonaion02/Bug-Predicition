@@ -9,7 +9,7 @@ from scipy.stats import ttest_ind
 
 
 
-version = "clean"
+version = "oversampled"
 path_to_summary_file = f"File/distributions/summary_{version}.md"
 path_to_data_set = f"File/ActiveMQ_input_{version}.csv"
 drop_columns = False
@@ -51,7 +51,7 @@ format = "svg"
 
 no_histograms = ["fix", "pd"]
 
-x_limits = {"exp": (0, 100), "lt": (0, 3000), "ndev": (0, 100), "nf" : (0, 100), "rexp" : (0, 5)}
+x_limits = {"exp": (0, 100), "lt": (0, 20000), "ndev": (0, 100), "nf" : (0, 100), "rexp" : (0, 5)}
 
 for col in df.select_dtypes(include='number').columns:
     if col not in no_histograms:
@@ -87,8 +87,5 @@ for col in no_histograms:
     
     # Show the figure
     # plt.show()
-
-
-
 
 # Distribution of all features (END)

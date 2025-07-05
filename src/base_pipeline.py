@@ -11,7 +11,7 @@ from scipy.stats import ttest_ind
 
 
 
-df = pd.read_csv("File/ActiveMQ_input_clean.csv")
+df = pd.read_csv("File/ActiveMQ_input_base.csv")
 column_names = df.columns.tolist()
 
 print(df.info())
@@ -19,6 +19,7 @@ print(df["bug"].value_counts(normalize=True))  # distribuzione classi
 
 # Analisi squilibrio
 sns.countplot(data=df, x='bug')
+plt.ylabel("frequenza assoluta")
 plt.savefig("File/bug_class_frquency.png")
 
 
