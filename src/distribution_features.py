@@ -9,10 +9,10 @@ from scipy.stats import ttest_ind
 
 
 
-version = "oversampled_adasyn"
+version = "base"
 path_to_summary_file = f"File/distributions/summary_{version}.md"
 path_to_data_set = f"File/ActiveMQ_input_{version}.csv"
-drop_columns = False
+drop_columns = True
 
 
 
@@ -45,7 +45,7 @@ with open(path_to_summary_file, "w") as f:
             f.write("\n")
 # Summary for all the features (END)
 
-format = "svg"
+format = "png"
 
 # Distribution of all features (START)
 

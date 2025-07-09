@@ -1,5 +1,5 @@
 
-=== Unnamed: 0 ===
+=== useless ===
 count    10236.000000
 mean      5118.500000
 std       2955.023012
@@ -8,7 +8,7 @@ min          1.000000
 50%       5118.500000
 75%       7677.250000
 max      10236.000000
-Name: Unnamed: 0, dtype: float64
+Name: useless, dtype: float64
 
 === nf ===
 count    10236.000000
