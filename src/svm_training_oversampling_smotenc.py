@@ -86,7 +86,6 @@ joblib.dump(model, f"model_svm_{name_of_model}.pkl")
 
 
 
-# 
 '''
 train_sizes, train_scores, test_scores = learning_curve(
     model, X, y, cv=5, scoring='accuracy', train_sizes=np.linspace(0.1, 1.0, 10), n_jobs=-1
