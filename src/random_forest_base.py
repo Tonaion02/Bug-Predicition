@@ -16,12 +16,19 @@ import pickle
 
 
 # === Parametri ===
+model_name = "random_forest"
 version = "base"
-name_try = "rf_base_nEstimators1"
+name_try = "rf_base_opt_vers"
 categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
 n_cv = 5
 n_train_sizes = 20
-n_estimators = 1
+n_estimators = 10
+max_depth = 5
+min_samples_split=100
+min_samples_leaf=100
+
+
+
 
 
 
@@ -42,7 +49,9 @@ pipeline = Pipeline([
     # ('adasyn', ADASYN(random_state=42)),
     ('model', RandomForestClassifier(
         n_estimators=n_estimators,
-        max_depth=None,
+        max_depth=max_depth,
+        min_samples_split=min_samples_split,
+        min_samples_leaf=min_samples_leaf,
         random_state=42,
         n_jobs=-1
     ))
@@ -99,6 +108,12 @@ print("\nClassification Report:\n", class_report)
 
 # === Save metrics to file ===
 with open(f"File/training/{name_try}/metrics.txt", "w") as f:
+    f.write(f"model name: {model_name}\n")
+    f.write(f"dataset name: {version}\n")
+    f.write(f"n_estimators: {n_estimators}\n")
+    f.write(f"max_depth:  {max_depth}\n")
+    f.write(f"min samples split: {min_samples_split}\n")
+    f.write(f"min samples leaf: {min_samples_leaf}\n")
     f.write("EVALUATION ON TEST SET\n")
     f.write(f"Accuracy: {accuracy:.4f}\n")
     f.write(f"Precision: {precision:.4f}\n")

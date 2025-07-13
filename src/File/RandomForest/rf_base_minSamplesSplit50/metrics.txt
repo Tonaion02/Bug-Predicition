@@ -1,0 +1,24 @@
+model name: random_forest
+dataset name: base
+n_estimators: 1
+max_depth:  5
+min samples split: 50
+EVALUATION ON TEST SET
+Accuracy: 0.8527
+Precision: 0.6090
+Recall: 0.2879
+F1-score: 0.3909
+
+Confusion Matrix:
+[[1618   61]
+ [ 235   95]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.873     0.964     0.916      1679
+           1      0.609     0.288     0.391       330
+
+    accuracy                          0.853      2009
+   macro avg      0.741     0.626     0.654      2009
+weighted avg      0.830     0.853     0.830      2009
