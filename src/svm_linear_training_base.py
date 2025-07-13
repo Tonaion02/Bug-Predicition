@@ -18,6 +18,7 @@ import pickle
 version = "base"
 name_try = "base"
 n_cv = 5
+n_train_sizes = 200
 
 # Load dataset (START)
 df = pd.read_csv(f"File/ActiveMQ_input_{version}.csv")
@@ -79,7 +80,7 @@ plt.show()
 pipeline.fit(X_train.values, y_train.values)
 y_pred = pipeline.predict(X_test.values)
 
-print("\n📊 VALUTAZIONE SUL TEST SET 📊")
+print("\nVALUTAZIONE SUL TEST SET")
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Precision:", precision_score(y_test, y_pred, pos_label=1))
 print("Recall:", recall_score(y_test, y_pred, pos_label=1))
