@@ -80,7 +80,7 @@ plt.show()
 pipeline.fit(X_train.values, y_train.values)
 y_pred = pipeline.predict(X_test.values)
 
-print("\nVALUTAZIONE SUL TEST SET")
+print("\n EVALUATION OF TEST SET")
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Precision:", precision_score(y_test, y_pred, pos_label=1))
 print("Recall:", recall_score(y_test, y_pred, pos_label=1))
@@ -90,17 +90,17 @@ print("\nClassification Report:\n", classification_report(y_test, y_pred, digits
 
 
 
-with open(f"File/training/{name_try}/model.pkl", "wb") as f:
+with open(f"File/training/{name_try}/pipeline.pkl", "wb") as f:
     pickle.dump(pipeline, f)
 with open(f"File/training/{name_try}/X.pkl", "wb") as f:
-    pickle.dump(pipeline, f)
+    pickle.dump(X, f)
 with open(f"File/training/{name_try}/y.pkl", "wb") as f:
-    pickle.dump(pipeline, f)
+    pickle.dump(y, f)
 with open(f"File/training/{name_try}/X_train.pkl", "wb") as f:
-    pickle.dump(pipeline, f)
+    pickle.dump(X_train, f)
 with open(f"File/training/{name_try}/y_train.pkl", "wb") as f:
-    pickle.dump(pipeline, f)
+    pickle.dump(y_train, f)
 with open(f"File/training/{name_try}/X_test.pkl", "wb") as f:
-    pickle.dump(pipeline, f)
+    pickle.dump(X_test, f)
 with open(f"File/training/{name_try}/y_test.pkl", "wb") as f:
-    pickle.dump(pipeline, f)
+    pickle.dump(y_test, f)
