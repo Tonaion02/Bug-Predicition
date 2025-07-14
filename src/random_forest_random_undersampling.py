@@ -3,7 +3,7 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from imblearn.over_sampling import ADASYN
+from imblearn.under_sampling import RandomUnderSampler 
 from imblearn.pipeline import Pipeline
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,16 +16,16 @@ import pickle
 
 
 # === Parametri ===
-model_name = "random_forest"
+model_name = "random_forest_random_undersampling"
 version = "base"
-name_try = "rf_base"
+name_try = "rf_random_undersampling_freeIperparameters"
 categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
 n_cv = 5
 n_train_sizes = 20
 n_estimators = 10
-max_depth = 5
-min_samples_split=100
-min_samples_leaf=100
+max_depth = 300
+min_samples_split=50
+min_samples_leaf=50
 
 
 
@@ -43,9 +43,11 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, stratify=y, random_state=42
 )
 
+categorical_indices = [i for i, col in enumerate(X.columns) if col in categorical_cols]
+
 # === Pipeline Random Forest ===
 pipeline = Pipeline([
-    # ('adasyn', ADASYN(random_state=42)),
+    ('undersampling', RandomUnderSampler(random_state=42)),
     ('model', RandomForestClassifier(
         n_estimators=n_estimators,
         max_depth=max_depth,

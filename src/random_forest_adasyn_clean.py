@@ -16,16 +16,40 @@ import pickle
 
 
 # === Parametri ===
-model_name = "random_forest"
+model_name = "random_forest_adasyn_clean(oversampled_all)"
 version = "base"
-name_try = "rf_base"
+name_try = "rf_adasyn_clean(oversampled_all)"
+clean_outliers = ["nf", "entropy", "la", "ld", "lt", "npt", "exp"]
 categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
 n_cv = 5
 n_train_sizes = 20
 n_estimators = 10
-max_depth = 5
+max_depth = 200
 min_samples_split=100
 min_samples_leaf=100
+
+
+
+
+
+def remove_outliers_iqr(df, cols=[]):
+    df_clean = df.copy()
+    
+    for col in cols:
+        print(col)
+
+        Q1 = np.percentile(df_clean[col], 25)
+        Q3 = np.percentile(df_clean[col], 75)
+        IQR = Q3 - Q1
+
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+        
+        df_clean = df_clean[(df_clean[col] > lower_bound) & (df_clean[col] < upper_bound)]
+
+        print(df_clean.shape)
+
+    return df_clean
 
 
 
@@ -35,17 +59,22 @@ min_samples_leaf=100
 df = pd.read_csv(f"File/ActiveMQ_input_{version}.csv")
 columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm", "rexp", "bug"]
 df = df.dropna(subset=["npt"])
+df = remove_outliers_iqr(df, clean_outliers)
+adasyn = ADASYN(random_state=42)
 X = df.drop(columns=columns_to_drop)
 y = df["bug"]
+# X, y = adasyn.fit_resample(X, y)
 
 # === Train/test split ===
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, stratify=y, random_state=42
 )
 
+
+
 # === Pipeline Random Forest ===
 pipeline = Pipeline([
-    # ('adasyn', ADASYN(random_state=42)),
+    ('adasyn', ADASYN(random_state=42)),
     ('model', RandomForestClassifier(
         n_estimators=n_estimators,
         max_depth=max_depth,

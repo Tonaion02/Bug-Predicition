@@ -16,14 +16,14 @@ import pickle
 
 
 # === Parametri ===
-model_name = "random_forest"
+model_name = "random_forest_adasyn"
 version = "base"
-name_try = "rf_base"
+name_try = "rf_adasyn"
 categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
 n_cv = 5
 n_train_sizes = 20
 n_estimators = 10
-max_depth = 5
+max_depth = 200
 min_samples_split=100
 min_samples_leaf=100
 
@@ -45,7 +45,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # === Pipeline Random Forest ===
 pipeline = Pipeline([
-    # ('adasyn', ADASYN(random_state=42)),
+    ('adasyn', ADASYN(random_state=42)),
     ('model', RandomForestClassifier(
         n_estimators=n_estimators,
         max_depth=max_depth,

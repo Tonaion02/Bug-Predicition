@@ -1,0 +1,25 @@
+model name: random_forest_adasyn
+dataset name: base
+n_estimators: 10
+max_depth:  200
+min samples split: 100
+min samples leaf: 100
+EVALUATION ON TEST SET
+Accuracy: 0.7451
+Precision: 0.3415
+Recall: 0.5939
+F1-score: 0.4336
+
+Confusion Matrix:
+[[1301  378]
+ [ 134  196]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.907     0.775     0.836      1679
+           1      0.341     0.594     0.434       330
+
+    accuracy                          0.745      2009
+   macro avg      0.624     0.684     0.635      2009
+weighted avg      0.814     0.745     0.770      2009

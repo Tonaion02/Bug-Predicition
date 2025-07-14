@@ -1,0 +1,25 @@
+model name: random_forest_random_undersampling
+dataset name: base
+n_estimators: 10
+max_depth:  300
+min samples split: 50
+min samples leaf: 50
+EVALUATION ON TEST SET
+Accuracy: 0.7526
+Precision: 0.3620
+Recall: 0.6636
+F1-score: 0.4684
+
+Confusion Matrix:
+[[1293  386]
+ [ 111  219]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.921     0.770     0.839      1679
+           1      0.362     0.664     0.468       330
+
+    accuracy                          0.753      2009
+   macro avg      0.641     0.717     0.654      2009
+weighted avg      0.829     0.753     0.778      2009

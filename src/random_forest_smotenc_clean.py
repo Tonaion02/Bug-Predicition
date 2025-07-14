@@ -3,7 +3,7 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from imblearn.over_sampling import ADASYN
+from imblearn.over_sampling import SMOTENC
 from imblearn.pipeline import Pipeline
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,16 +16,41 @@ import pickle
 
 
 # === Parametri ===
-model_name = "random_forest"
+model_name = "random_forest_smotenc"
 version = "base"
-name_try = "rf_base"
-categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
+name_try = "rf_smotenc_clean"
+# categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
+categorical_cols = ["fix"]
+clean_outliers = ["nf", "entropy", "la", "ld", "lt", "npt", "exp"]
 n_cv = 5
 n_train_sizes = 20
 n_estimators = 10
-max_depth = 5
+max_depth = 200
 min_samples_split=100
 min_samples_leaf=100
+
+
+
+
+
+def remove_outliers_iqr(df, cols=[]):
+    df_clean = df.copy()
+    
+    for col in cols:
+        print(col)
+
+        Q1 = np.percentile(df_clean[col], 25)
+        Q3 = np.percentile(df_clean[col], 75)
+        IQR = Q3 - Q1
+
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+        
+        df_clean = df_clean[(df_clean[col] > lower_bound) & (df_clean[col] < upper_bound)]
+
+        print(df_clean.shape)
+
+    return df_clean
 
 
 
@@ -35,6 +60,7 @@ min_samples_leaf=100
 df = pd.read_csv(f"File/ActiveMQ_input_{version}.csv")
 columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm", "rexp", "bug"]
 df = df.dropna(subset=["npt"])
+df = remove_outliers_iqr(df, clean_outliers)
 X = df.drop(columns=columns_to_drop)
 y = df["bug"]
 
@@ -43,9 +69,12 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, stratify=y, random_state=42
 )
 
+categorical_indices = [i for i, col in enumerate(X.columns) if col in categorical_cols]
+
 # === Pipeline Random Forest ===
 pipeline = Pipeline([
     # ('adasyn', ADASYN(random_state=42)),
+    ('smotenc', SMOTENC(categorical_features=categorical_indices, random_state=42)),
     ('model', RandomForestClassifier(
         n_estimators=n_estimators,
         max_depth=max_depth,
