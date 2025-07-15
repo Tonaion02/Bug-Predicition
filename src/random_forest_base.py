@@ -16,6 +16,7 @@ import pickle
 
 
 # === Parametri ===
+file = "Camel"
 model_name = "random_forest"
 version = "base"
 name_try = "rf_base"
@@ -32,7 +33,7 @@ min_samples_leaf=100
 
 
 # === Load dataset ===
-df = pd.read_csv(f"File/ActiveMQ_input_{version}.csv")
+df = pd.read_csv(f"File/{file}_input_{version}.csv")
 columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm", "rexp", "bug"]
 df = df.dropna(subset=["npt"])
 X = df.drop(columns=columns_to_drop)

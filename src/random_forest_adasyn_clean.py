@@ -16,6 +16,7 @@ import pickle
 
 
 # === Parametri ===
+file = "Camel"
 model_name = "random_forest_adasyn_clean"
 version = "base"
 name_try = "rf_adasyn_clean"
@@ -56,7 +57,7 @@ def remove_outliers_iqr(df, cols=[]):
 
 
 # === Load dataset ===
-df = pd.read_csv(f"File/ActiveMQ_input_{version}.csv")
+df = pd.read_csv(f"File/{file}_input_{version}.csv")
 columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm", "rexp", "bug"]
 df = df.dropna(subset=["npt"])
 df = remove_outliers_iqr(df, clean_outliers)

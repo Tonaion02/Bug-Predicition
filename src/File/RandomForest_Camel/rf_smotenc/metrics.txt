@@ -1,0 +1,25 @@
+model name: random_forest_smotenc
+dataset name: base
+n_estimators: 10
+max_depth:  200
+min samples split: 100
+min samples leaf: 100
+EVALUATION ON TEST SET
+Accuracy: 0.7875
+Precision: 0.2695
+Recall: 0.7900
+F1-score: 0.4019
+
+Confusion Matrix:
+[[5546 1499]
+ [ 147  553]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.974     0.787     0.871      7045
+           1      0.269     0.790     0.402       700
+
+    accuracy                          0.787      7745
+   macro avg      0.622     0.789     0.636      7745
+weighted avg      0.910     0.787     0.828      7745
