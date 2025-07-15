@@ -1,0 +1,21 @@
+model name: svm_smotenc_clean
+dataset name: base
+EVALUATION ON TEST SET
+Accuracy: 0.7341
+Precision: 0.1674
+Recall: 0.4937
+F1-score: 0.2500
+
+Confusion Matrix:
+[[607 194]
+ [ 40  39]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.938     0.758     0.838       801
+           1      0.167     0.494     0.250        79
+
+    accuracy                          0.734       880
+   macro avg      0.553     0.626     0.544       880
+weighted avg      0.869     0.734     0.786       880

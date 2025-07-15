@@ -16,14 +16,15 @@ import pickle
 
 
 
+file = "Camel"
 version = "base"
-name_try = "smotenc"
+name_try = "svm_smotenc"
 categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
 n_cv = 5
 n_train_sizes = 20
 
 # Load dataset (START)
-df = pd.read_csv(f"File/ActiveMQ_input_{version}.csv")
+df = pd.read_csv(f"File/{file}_input_{version}.csv")
 columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm" , "rexp", "bug"]
 # columns_to_drop = ["useless", "bug"]
 # columns_to_drop = ["bug"]

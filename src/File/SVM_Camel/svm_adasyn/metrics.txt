@@ -1,0 +1,21 @@
+model name: svm_adasyn
+dataset name: base
+EVALUATION ON TEST SET
+Accuracy: 0.7522
+Precision: 0.2124
+Recall: 0.6429
+F1-score: 0.3193
+
+Confusion Matrix:
+[[5376 1669]
+ [ 250  450]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.956     0.763     0.849      7045
+           1      0.212     0.643     0.319       700
+
+    accuracy                          0.752      7745
+   macro avg      0.584     0.703     0.584      7745
+weighted avg      0.888     0.752     0.801      7745

@@ -1,0 +1,21 @@
+model name: svm_base
+dataset name: base
+EVALUATION ON TEST SET
+Accuracy: 0.9091
+Precision: 0.4167
+Recall: 0.0143
+F1-score: 0.0276
+
+Confusion Matrix:
+[[7031   14]
+ [ 690   10]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.911     0.998     0.952      7045
+           1      0.417     0.014     0.028       700
+
+    accuracy                          0.909      7745
+   macro avg      0.664     0.506     0.490      7745
+weighted avg      0.866     0.909     0.869      7745

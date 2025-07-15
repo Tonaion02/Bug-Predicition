@@ -16,6 +16,7 @@ import pickle
 
 
 
+model_name = "svm_smotenc_clean"
 version = "base"
 name_try = "smotenc_clean"
 categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
@@ -114,16 +115,37 @@ plt.show()
 pipeline.fit(X_train.values, y_train.values)
 y_pred = pipeline.predict(X_test.values)
 
-print("\n EVALUATION OF THE TEST SET")
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Precision:", precision_score(y_test, y_pred, pos_label=1))
-print("Recall:", recall_score(y_test, y_pred, pos_label=1))
-print("F1-score:", f1_score(y_test, y_pred, pos_label=1))
-print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
-print("\nClassification Report:\n", classification_report(y_test, y_pred, digits=3))
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, pos_label=1)
+recall = recall_score(y_test, y_pred, pos_label=1)
+f1 = f1_score(y_test, y_pred, pos_label=1)
+conf_matrix = confusion_matrix(y_test, y_pred)
+class_report = classification_report(y_test, y_pred, digits=3)
+
+print("\nEVALUATION ON TEST SET")
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+print("F1-score:", f1)
+print("\nConfusion Matrix:\n", conf_matrix)
+print("\nClassification Report:\n", class_report)
+
+# === Save metrics to file ===
+with open(f"File/training/{name_try}/metrics.txt", "w") as f:
+    f.write(f"model name: {model_name}\n")
+    f.write(f"dataset name: {version}\n")
+    f.write("EVALUATION ON TEST SET\n")
+    f.write(f"Accuracy: {accuracy:.4f}\n")
+    f.write(f"Precision: {precision:.4f}\n")
+    f.write(f"Recall: {recall:.4f}\n")
+    f.write(f"F1-score: {f1:.4f}\n\n")
+    f.write("Confusion Matrix:\n")
+    f.write(np.array2string(conf_matrix))
+    f.write("\n\nClassification Report:\n")
+    f.write(class_report)
 
 
-
+# === Save model and datasets ===
 with open(f"File/training/{name_try}/pipeline.pkl", "wb") as f:
     pickle.dump(pipeline, f)
 with open(f"File/training/{name_try}/X.pkl", "wb") as f:
