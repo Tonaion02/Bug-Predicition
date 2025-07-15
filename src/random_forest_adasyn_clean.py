@@ -16,9 +16,9 @@ import pickle
 
 
 # === Parametri ===
-model_name = "random_forest_adasyn_clean(oversampled_all)"
+model_name = "random_forest_adasyn_clean"
 version = "base"
-name_try = "rf_adasyn_clean(oversampled_all)"
+name_try = "rf_adasyn_clean"
 clean_outliers = ["nf", "entropy", "la", "ld", "lt", "npt", "exp"]
 categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
 n_cv = 5

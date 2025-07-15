@@ -11,7 +11,7 @@ from scipy.stats import ttest_ind
 
 
 
-df = pd.read_csv("File/ActiveMQ_input_base.csv")
+df = pd.read_csv("File/ActiveMQ_input_clean.csv")
 column_names = df.columns.tolist()
 
 print(df.info())

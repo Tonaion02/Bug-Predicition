@@ -9,14 +9,14 @@ from imblearn.over_sampling import SMOTE
 
 
 
+file = "Camel"
+version = "clean"
+new_version = "oversampled_smotenc_clean"
+path_to_data_set = f"File/{file}_input_{version}.csv"
+path_to_new_data_set = f"File/{file}_input_{new_version}.csv"
 
-version = "base"
-new_version = "oversampled"
-path_to_data_set = f"File/ActiveMQ_input_{version}.csv"
-path_to_new_data_set = f"File/ActiveMQ_input_{new_version}.csv"
-
-columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm" , "rexp"]
-# columns_to_drop = ["useless"]
+# columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm" , "rexp"]
+columns_to_drop = ["useless"]
 
 categorical_features = ["nf", "lt", "fix", "pd", "exp"]
 # categorical_features = []

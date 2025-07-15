@@ -23,7 +23,7 @@ categorical_cols = ["fix", "nf", "lt", "pd", "exp"]
 n_cv = 5
 n_train_sizes = 20
 n_estimators = 10
-max_depth = 5
+max_depth = 200
 min_samples_split=100
 min_samples_leaf=100
 

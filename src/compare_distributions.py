@@ -6,9 +6,9 @@ from scipy.stats import chi2_contingency
 
 
 
-
-path_to_data_set_1 = "File/ActiveMQ_input_base.csv"
-path_to_data_set_2 = "File/ActiveMQ_input_oversampled.csv"
+file = "Camel"
+path_to_data_set_1 = f"File/{file}_input_base.csv"
+path_to_data_set_2 = f"File/{file}_input_oversampled.csv"
 feature_1 = "entropy"
 feature_2 = "entropy"
 # Choose modality between:

@@ -1,6 +1,8 @@
 import pandas as pd
 
-df = pd.read_csv("File/ActiveMQ_input.csv")
+version = "base"
+file = "Camel"
+df = pd.read_csv(f"File/{file}_input_{version}.csv")
 
 
 # Confronta le colonne sexp e entropy e conta le righe con valori diversi

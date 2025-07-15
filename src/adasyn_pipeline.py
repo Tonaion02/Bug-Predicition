@@ -7,13 +7,14 @@ from collections import Counter
 
 
 
-version = "clean"
+file = "Camel"
+version = "base"
 new_version = "oversampled_adasyn"
-path_to_data_set = f"File/ActiveMQ_input_{version}.csv"
-path_to_new_data_set = f"File/ActiveMQ_input_{new_version}.csv"
+path_to_data_set = f"File/{file}_input_{version}.csv"
+path_to_new_data_set = f"File/{file}_input_{new_version}.csv"
 
-# columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm" , "rexp"]
-columns_to_drop = ["useless"]
+columns_to_drop = ["useless", "transactionid", "commitdate", "sexp", "ns", "ndev", "nm" , "rexp"]
+# columns_to_drop = ["useless"]
 
 
 

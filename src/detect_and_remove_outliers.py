@@ -11,8 +11,9 @@ import os
 
 
 
-path_to_data_set = "File/ActiveMQ_input_clean.csv"
-path_to_clean_data_set = "File/ActiveMQ_input_clean.csv"
+file = "Camel"
+path_to_data_set = f"File/{file}_input_clean.csv"
+path_to_clean_data_set = f"File/{file}_input_clean.csv"
 clean_data_set = True
 column_name = "npt"
 
@@ -20,6 +21,7 @@ column_name = "npt"
 
 # Load dataset (START)
 df = pd.read_csv(path_to_data_set)
+df = df.dropna(subset=["npt"])
 
 # Exclude useless features
 columns_to_drop = ["transactionid", "commitdate", "sexp", "ns", "ndev", "nm" , "rexp"]
